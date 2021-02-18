@@ -1,0 +1,70 @@
+---
+title: "pa3"
+author: "Joselyn Rodriguez"
+date: "2/18/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r load}
+library(tidyverse)
+library(languageR)
+```
+
+```{r options}
+data(package = "languageR")
+```
+
+1. Load the dataset of your choice and get information about its structure (remember all code needs to be inside a knitr code chunk).
+
+```{r}
+# dataset of choice? etymology: Etymological age and regularity in Dutch
+ety <- languageR::etymology # already tidied
+View(ety)
+
+# another option
+# dv <- languageR::finalDevoicing
+# View(dv)
+```
+
+2. Tidy the dataset (every variable gets a column, every observation occupies a single row), if necessary.
+
+Already tidied.
+
+3. Calculate descriptive statistics of your choice.
+
+```{r}
+summary(ety)
+```
+
+4. Select two continuous variables and fit a model to the data (bivariate regression).
+
+```{r model}
+# make a model
+model <- lm(WrittenFrequency ~ NcountStem, data = ety)
+summary(model)
+```
+
+
+5. Generate a plot that includes a regression line.
+
+```{r plot}
+plot <- ggplot(data = ety, aes(x = WrittenFrequency, y = NcountStem)) +
+            geom_jitter() +
+            geom_smooth(method = "lm", se =  TRUE)
+          
+plot
+```
+
+
+6. Write up some general observations (1-2 paragraphs max)
+
+It looks like there is actually a positive relationship between the written frequency of a word in Dutch and how many orthographic neighbors the word has. This makes sense as the more frequent a word is, the more likely it is to have other words that are similar orthographically as it's getting shorter and shorter words are also probably more alike in general.
+
+
+
+
