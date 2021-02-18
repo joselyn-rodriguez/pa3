@@ -24,7 +24,7 @@ data(package = "languageR")
 ```{r}
 # dataset of choice? etymology: Etymological age and regularity in Dutch
 ety <- languageR::etymology # already tidied
-View(ety)
+# View(ety) this whole thing with XQuartz is driving me crazy
 
 # another option
 # dv <- languageR::finalDevoicing
